@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Quote", menuName = "ScriptableObjects/Quote", order = 1)]
 public class QuoteSO : ScriptableObject
 {
+    [Multiline]
     [SerializeField] string text = "Placeholder quote";
     public string Text => text;
     [SerializeField] float displayTime = 1f;
