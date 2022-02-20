@@ -1,0 +1,43 @@
+using UnityEngine;
+
+namespace Onion2D.Movement
+{
+	public class AccelerationMovement : MonoBehaviour
+	{
+		[SerializeField] Rigidbody2D body;
+		[SerializeField] float acceleration, decceleration, maxSpeed;
+		float horizontalSpeed;
+
+		private void Update()
+		{
+			float input = Input.GetAxisRaw("Horizontal");
+			Move(input);
+			body.velocity = new Vector2(horizontalSpeed, body.velocity.y);
+		}
+		public void Move(float input)
+		{
+			if (!Mathf.Approximately(input, 0f))
+			{
+				Accelerate(input);
+			}
+			else
+			{
+				Deccelerate();
+			}
+		}
+		private void Accelerate(float input)
+		{
+			if (Mathf.Sign(input) != Mathf.Sign(horizontalSpeed))
+			{
+				horizontalSpeed = 0;
+			}
+			horizontalSpeed += input * acceleration * Time.deltaTime;
+			horizontalSpeed = Mathf.Clamp(horizontalSpeed, -maxSpeed, maxSpeed);
+		}
+		private void Deccelerate()
+		{
+			horizontalSpeed = Mathf.MoveTowards(horizontalSpeed, 0, decceleration * Time.deltaTime);
+		}
+
+	}
+}
