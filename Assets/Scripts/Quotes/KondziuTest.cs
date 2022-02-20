@@ -17,6 +17,8 @@ public class KondziuTest : MonoBehaviour
     {
         Keyboard keyboard = Keyboard.current;
 
+        if (keyboard.hKey.wasPressedThisFrame)
+            quoteIntro.ShowTextAndHideBackground();
         if (keyboard.jKey.wasPressedThisFrame)
             quoteIntro.ShowText();
         if (keyboard.kKey.wasPressedThisFrame)

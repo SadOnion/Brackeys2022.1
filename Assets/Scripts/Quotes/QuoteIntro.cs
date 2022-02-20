@@ -16,10 +16,9 @@ public class QuoteIntro : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] float bgFadeInOutTime = 1f;
+    [SerializeField] float textFadeInOutTime = 1f;
     [SerializeField] LeanTweenType fadeInType;
     [SerializeField] LeanTweenType fadeOutType;
-    [SerializeField] float textDisplayDelay = 0f;
-    [SerializeField] float textFadeInOutTime = 1f;
 
     public UnityEvent onShowTextFinished = new UnityEvent();
     public UnityEvent onHideBackgroundFinished = new UnityEvent();
@@ -32,22 +31,26 @@ public class QuoteIntro : MonoBehaviour
         textField.alpha = 0f;
     }
 
+    public void ShowTextAndHideBackground()
+    {
+        LTSeq sequence = LeanTween.sequence();
+
+        AddShowTextToSequence(sequence);
+        AddHideBackgroundToSequence(sequence);
+    }
+
     public void ShowText()
     {
         LTSeq sequence = LeanTween.sequence();
 
-        sequence.append(FadeInText());
-        sequence.append(quote.DisplayTime);
-        sequence.append(FadeOutText());
-        sequence.append(() => onShowTextFinished?.Invoke());
+        AddShowTextToSequence(sequence);
     }
     
     public void HideBackground()
     {
         LTSeq sequence = LeanTween.sequence();
 
-        sequence.append(FadeOutBackground());
-        sequence.append(() => onHideBackgroundFinished.Invoke());
+        AddHideBackgroundToSequence(sequence);
     }
 
     public void ShowBackground()
@@ -56,6 +59,21 @@ public class QuoteIntro : MonoBehaviour
 
         sequence.append(FadeInBackground());
         sequence.append(() => onShowBackgroundFinished.Invoke());
+    }
+
+
+    void AddShowTextToSequence(LTSeq sequence)
+    {
+        sequence.append(FadeInText());
+        sequence.append(quote.DisplayTime);
+        sequence.append(FadeOutText());
+        sequence.append(() => onShowTextFinished?.Invoke());
+    }
+
+    void AddHideBackgroundToSequence(LTSeq sequence)
+    {
+        sequence.append(FadeOutBackground());
+        sequence.append(() => onHideBackgroundFinished.Invoke());
     }
 
     LTDescr FadeInText()
