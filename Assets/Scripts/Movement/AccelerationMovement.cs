@@ -10,8 +10,6 @@ namespace Onion2D.Movement
 
 		private void Update()
 		{
-			float input = Input.GetAxisRaw("Horizontal");
-			Move(input);
 			body.velocity = new Vector2(horizontalSpeed, body.velocity.y);
 		}
 		public void Move(float input)
