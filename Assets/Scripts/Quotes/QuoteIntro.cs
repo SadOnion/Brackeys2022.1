@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 public class QuoteIntro : MonoBehaviour
 {
+    [Header("Main")]
+    [SerializeField] QuoteSO quote;
+
     [Header("Dependencies")]
     [SerializeField] CanvasGroup canvasGroup;
     [SerializeField] TextMeshProUGUI textField;
@@ -18,31 +21,41 @@ public class QuoteIntro : MonoBehaviour
     [SerializeField] float textDisplayDelay = 0f;
     [SerializeField] float textFadeInOutTime = 1f;
 
-    public UnityEvent onFadeInFinished = new UnityEvent();
-    public UnityEvent onFadeOutStarted = new UnityEvent();
-    public UnityEvent onFinished = new UnityEvent();
+    public UnityEvent onShowTextFinished = new UnityEvent();
+    public UnityEvent onHideBackgroundFinished = new UnityEvent();
+    public UnityEvent onShowBackgroundFinished = new UnityEvent();
+
 
     private void Awake()
     {
-        canvasGroup.alpha = 0f;
-    }
-
-    public void Activate(QuoteSO quote)
-    {
         textField.text = quote.Text;
         textField.alpha = 0f;
+    }
 
+    public void ShowText()
+    {
         LTSeq sequence = LeanTween.sequence();
 
-        sequence.append(FadeInBackground());
-        sequence.append(() => onFadeInFinished.Invoke());
-        sequence.append(textDisplayDelay);
         sequence.append(FadeInText());
         sequence.append(quote.DisplayTime);
         sequence.append(FadeOutText());
-        sequence.append(() => onFadeOutStarted.Invoke());
+        sequence.append(() => onShowTextFinished?.Invoke());
+    }
+    
+    public void HideBackground()
+    {
+        LTSeq sequence = LeanTween.sequence();
+
         sequence.append(FadeOutBackground());
-        sequence.append(() => onFinished.Invoke());
+        sequence.append(() => onHideBackgroundFinished.Invoke());
+    }
+
+    public void ShowBackground()
+    {
+        LTSeq sequence = LeanTween.sequence();
+
+        sequence.append(FadeInBackground());
+        sequence.append(() => onShowBackgroundFinished.Invoke());
     }
 
     LTDescr FadeInText()

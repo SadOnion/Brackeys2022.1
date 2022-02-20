@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "It is a period of civil war.\nRebel spaceships, striking from a hidden base,\nhave
     won their first victory \nagainst the evil Galactic Empire."
-  displayTime: 4
+  displayTime: 2

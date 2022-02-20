@@ -9,15 +9,19 @@ public class KondziuTest : MonoBehaviour
 
     private void Start()
     {
-        quoteIntro.onFadeInFinished.AddListener(() => Debug.Log("On fade in finished"));
-        quoteIntro.onFadeOutStarted.AddListener(() => Debug.Log("On fade out started"));
-        quoteIntro.onFinished.AddListener(() => Debug.Log("On finished"));
+        quoteIntro.onShowTextFinished.AddListener(() => Debug.Log("Show text finished"));
+        quoteIntro.onHideBackgroundFinished.AddListener(() => Debug.Log("Hide background finished"));
+        quoteIntro.onShowBackgroundFinished.AddListener(() => Debug.Log("Show background finished"));
     }
     void Update()
     {
         Keyboard keyboard = Keyboard.current;
 
         if (keyboard.jKey.wasPressedThisFrame)
-            quoteIntro.Activate(testQuote);
+            quoteIntro.ShowText();
+        if (keyboard.kKey.wasPressedThisFrame)
+            quoteIntro.HideBackground();
+        if (keyboard.lKey.wasPressedThisFrame)
+            quoteIntro.ShowBackground();
     }
 }

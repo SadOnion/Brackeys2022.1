@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1aea8cce12572468b16ab38dbe1c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quote: {fileID: 11400000, guid: 28455b7202a9ab3489816e03d592e968, type: 2}
   canvasGroup: {fileID: 8566030220358523459}
   textField: {fileID: 8566030221031312969}
   bgFadeInOutTime: 1.5
@@ -135,6 +136,15 @@ MonoBehaviour:
   fadeOutType: 0
   textDisplayDelay: 1
   textFadeInOutTime: 1
+  onShowTextFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  onHideBackgroundFinished:
+    m_PersistentCalls:
+      m_Calls: []
+  onShowBackgroundFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!225 &8566030220358523459
 CanvasGroup:
   m_ObjectHideFlags: 0
