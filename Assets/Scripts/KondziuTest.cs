@@ -6,6 +6,7 @@ public class KondziuTest : MonoBehaviour
 {
     [SerializeField] QuoteIntro quoteIntro;
     [SerializeField] QuoteSO testQuote;
+    [SerializeField] SizeChangable sizeChangable;
 
     private void Start()
     {
@@ -25,5 +26,9 @@ public class KondziuTest : MonoBehaviour
             quoteIntro.HideBackground();
         if (keyboard.lKey.wasPressedThisFrame)
             quoteIntro.ShowBackground();
+        if (keyboard.fKey.wasPressedThisFrame)
+            sizeChangable.ModifySize(2f);
+        if (keyboard.gKey.wasPressedThisFrame)
+            sizeChangable.ModifySize(1f);
     }
 }
