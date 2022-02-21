@@ -5,15 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class GravityChanger : MonoBehaviour, Interactable
 {
-    GravitySystem gravitySystem;
+	[SerializeField] VoidEvent OnGravityChange;
 
-    private void Awake()
-    {
-        gravitySystem = FindObjectOfType<GravitySystem>();
-    }
-
-    public void Interact()
-    {
-        gravitySystem.SwapGravity();
-    }
+	public void Interact()
+	{
+		OnGravityChange.RaiseEvent();
+	}
 }

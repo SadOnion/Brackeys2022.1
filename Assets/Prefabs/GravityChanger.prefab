@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665c97d37d5dae443997dacb046752b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnGravityChange: {fileID: 11400000, guid: 6ffacfdb3a9e5c64f9d7e2b339c57002, type: 2}
 --- !u!61 &6137178148211417142
 BoxCollider2D:
   m_ObjectHideFlags: 0
