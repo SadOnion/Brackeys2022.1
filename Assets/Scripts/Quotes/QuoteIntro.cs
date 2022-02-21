@@ -31,6 +31,12 @@ public class QuoteIntro : MonoBehaviour
         textField.alpha = 0f;
     }
 
+    private void OnValidate()
+    {
+        if (quote != null)
+            textField.text = quote.Text;
+    }
+
     public void ShowTextAndHideBackground()
     {
         LTSeq sequence = LeanTween.sequence();

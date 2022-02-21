@@ -51,7 +51,10 @@ public class SizeChangeableDetector : MonoBehaviour
 
     Side GetObjectPos(Collider2D collision)
     {
-        Side side = (detectorCollider.bounds.center.x < collision.bounds.center.x) ? Side.Out : Side.In;
+        Vector2 colliderRight = Quaternion.Euler(0, 0, detectorCollider.transform.rotation.eulerAngles.z) * Vector2.right;
+        Vector2 toOtherCollider = collision.bounds.center - detectorCollider.bounds.center;
+
+        Side side = (Vector2.Dot(colliderRight, toOtherCollider) > 0) ? Side.Out : Side.In;
         if (transform.lossyScale.x < 0)
             side = OppositeSide(side);
         return side;

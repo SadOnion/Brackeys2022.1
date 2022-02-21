@@ -132,10 +132,9 @@ MonoBehaviour:
   canvasGroup: {fileID: 8566030220358523459}
   textField: {fileID: 8566030221031312969}
   bgFadeInOutTime: 1.5
+  textFadeInOutTime: 1
   fadeInType: 0
   fadeOutType: 0
-  textDisplayDelay: 1
-  textFadeInOutTime: 1
   onShowTextFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -190,8 +189,8 @@ RectTransform:
   m_Father: {fileID: 8566030220358523461}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25, y: 0.25}
-  m_AnchorMax: {x: 0.75, y: 0.75}
+  m_AnchorMin: {x: 0.15, y: 0.15}
+  m_AnchorMax: {x: 0.85, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -223,12 +222,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Placeholder text,, Placeholder text, Placeholder text, Placeholder text,
-    Placeholder text
-
-    Placeholder text
-
-    Placeholder text'
+  m_text: "It is a period of civil war.\nRebel spaceships, striking from a hidden
+    base,\nhave won their first victory \nagainst the evil Galactic Empire."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
