@@ -7,6 +7,7 @@ public class PlayerController : InputBehaviour
 	[SerializeField] AccelerationMovement accelerationMovement;
 	[SerializeField] JumpController jumpController;
 	[SerializeField] GroundCheck groundCheck;
+	[SerializeField] Interactor interactor;
 
 	private void Update()
 	{
@@ -16,10 +17,12 @@ public class PlayerController : InputBehaviour
 	protected override void SubscribeInputEvents()
 	{
 		controls.Player.Jump.performed += Jump;
+		controls.Player.Interact.performed += Interact;
 	}
 	protected override void UnsubscribeInputEvents()
 	{
 		controls.Player.Jump.performed -= Jump;
+		controls.Player.Interact.performed -= Interact;
 	}
 
 	private void Jump(InputAction.CallbackContext obj)
@@ -30,5 +33,6 @@ public class PlayerController : InputBehaviour
 		}
 	}
 
+	private void Interact(InputAction.CallbackContext obj) => interactor.TryInteract();
 
 }

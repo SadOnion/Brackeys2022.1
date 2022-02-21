@@ -8,45 +8,63 @@ public class SizeChangeableDetector : MonoBehaviour
 {
     public UnityEvent<SizeChangable, bool> onDetected = new UnityEvent<SizeChangable, bool>();
 
-    new Collider2D collider;
+    Collider2D detectorCollider;
 
     SizeChangable detectedSizeChangeable;
-    bool sizeChangeableOnRight;
+
+    enum Side { In, Out }
+    Side? prevObjectPos;
 
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
+        detectorCollider = GetComponent<Collider2D>();
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         detectedSizeChangeable = collision.gameObject.GetComponent<SizeChangable>();
-        DetectPassingThrough(collision);
+        if (detectedSizeChangeable == null)
+            return;
+
+        prevObjectPos = GetObjectPos(collision);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        DetectPassingThrough(collision);
+        if (detectedSizeChangeable == null)
+            return;
+
+        if(PassedThrough(collision))
+            onDetected.Invoke(detectedSizeChangeable, GetObjectPos(collision) == Side.In ? true : false);
+        prevObjectPos = GetObjectPos(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        DetectPassingThrough(collision);
+        if (detectedSizeChangeable == null)
+            return;
+
+        if (PassedThrough(collision))
+            onDetected.Invoke(detectedSizeChangeable, GetObjectPos(collision) == Side.In ? true : false);
         detectedSizeChangeable = null;
     }
 
-    void DetectPassingThrough(Collider2D collision)
+    Side GetObjectPos(Collider2D collision)
     {
-        bool objectOnRightSide = collider.bounds.center.x < collision.bounds.center.x;
+        Side side = (detectorCollider.bounds.center.x < collision.bounds.center.x) ? Side.Out : Side.In;
         if (transform.lossyScale.x < 0)
-            objectOnRightSide = !objectOnRightSide;
+            side = OppositeSide(side);
+        return side;
+    }
 
-        if (sizeChangeableOnRight != objectOnRightSide)
-        {
-            sizeChangeableOnRight = objectOnRightSide;
-            onDetected.Invoke(detectedSizeChangeable, !objectOnRightSide);
-        }
+    Side OppositeSide(Side side)
+    {
+        return side == Side.In ? Side.Out : Side.In;
+    }
+
+    bool PassedThrough(Collider2D collision)
+    {
+        return prevObjectPos.HasValue && GetObjectPos(collision) != prevObjectPos;
     }
 
 }

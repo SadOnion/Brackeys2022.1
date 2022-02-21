@@ -7,7 +7,8 @@ public class KondziuTest : MonoBehaviour
     [SerializeField] QuoteIntro quoteIntro;
     [SerializeField] QuoteSO testQuote;
     [SerializeField] SizeChangable sizeChangable;
-
+    [SerializeField] GravityChanger gravityChanger;
+    [SerializeField] GravitySystem gravitySystem;
     private void Start()
     {
         quoteIntro.onShowTextFinished.AddListener(() => Debug.Log("Show text finished"));
@@ -30,5 +31,9 @@ public class KondziuTest : MonoBehaviour
             sizeChangable.ModifySize(2f);
         if (keyboard.gKey.wasPressedThisFrame)
             sizeChangable.ModifySize(1f);
+        if (keyboard.dKey.wasPressedThisFrame)
+            gravityChanger.Interact();
+        if (keyboard.sKey.wasPressedThisFrame)
+            gravitySystem.SwapGravity();
     }
 }

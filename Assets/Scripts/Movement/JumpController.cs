@@ -7,10 +7,9 @@ namespace Onion2D.Movement
 	{
 		[SerializeField] Rigidbody2D body;
 		[SerializeField] float jumpForce;
-
 		public void PerformeJump()
 		{
-			body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+			body.AddForce(Vector2.up * jumpForce * Mathf.Sign(body.gravityScale), ForceMode2D.Impulse);
 		}
 
 	}

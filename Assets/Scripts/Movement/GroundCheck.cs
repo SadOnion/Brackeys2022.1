@@ -8,11 +8,19 @@ namespace Onion2D.Movement
 		[SerializeField] LayerMask groundLayer;
 		[SerializeField] bool drawGizmo;
 		[SerializeField] float groundBoxSize = .15f;
-		public Vector2 Center
+		new Rigidbody2D rigidbody2D;
+
+        private void Awake()
+        {
+			rigidbody2D = GetComponent<Rigidbody2D>();
+        }
+
+        public Vector2 Center
 		{
 			get
 			{
-				Vector2 center = groundCheckUnderThisCollider.bounds.center - Vector3.up * groundCheckUnderThisCollider.bounds.extents.y;
+				float gravityScale = (rigidbody2D != null) ? rigidbody2D.gravityScale : 1f;
+				Vector2 center = groundCheckUnderThisCollider.bounds.center - Vector3.up * groundCheckUnderThisCollider.bounds.extents.y * Mathf.Sign(gravityScale);
 				center.y -= groundBoxSize * .5f;
 				return center;
 			}
