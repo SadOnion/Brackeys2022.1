@@ -11,6 +11,7 @@ public class PlayerController : InputBehaviour
 	[SerializeField] GroundCheck groundCheck;
 	[SerializeField] Interactor interactor;
 	[SerializeField] [Range(0, 1)] float jumpCut;
+	[SerializeField] Dash dash;
 
 	private void Update()
 	{
@@ -22,6 +23,7 @@ public class PlayerController : InputBehaviour
 		controls.Player.Jump.performed += Jump;
 		controls.Player.Jump.canceled += JumpCanceled;
 		controls.Player.Interact.performed += Interact;
+		controls.Player.Dash.performed += Dash;
 	}
 
 
@@ -30,6 +32,7 @@ public class PlayerController : InputBehaviour
 		controls.Player.Jump.performed -= Jump;
 		controls.Player.Jump.canceled -= JumpCanceled;
 		controls.Player.Interact.performed -= Interact;
+		controls.Player.Dash.performed -= Dash;
 	}
 	private void JumpCanceled(InputAction.CallbackContext obj)
 	{
@@ -49,4 +52,9 @@ public class PlayerController : InputBehaviour
 
 	private void Interact(InputAction.CallbackContext obj) => interactor.TryInteract();
 
+	private void Dash(InputAction.CallbackContext obj)
+    {
+		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
+		dash.Perform(dashDirection);
+	}
 }
