@@ -26,11 +26,5 @@ public class KondziuTest : MonoBehaviour
 			quoteIntro.HideBackground();
 		if (keyboard.lKey.wasPressedThisFrame)
 			quoteIntro.ShowBackground();
-		if (keyboard.fKey.wasPressedThisFrame)
-			sizeChangable.ModifySize(2f);
-		if (keyboard.gKey.wasPressedThisFrame)
-			sizeChangable.ModifySize(1f);
-		if (keyboard.dKey.wasPressedThisFrame)
-			gravityChanger.Interact();
 	}
 }

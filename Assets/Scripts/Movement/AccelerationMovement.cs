@@ -8,9 +8,11 @@ namespace Onion2D.Movement
 		[SerializeField] float acceleration, decceleration, maxSpeed;
 		float horizontalSpeed;
 
+		public float Control { get; set; } = 1f;
+
 		private void Update()
 		{
-			body.velocity = new Vector2(horizontalSpeed, body.velocity.y);
+			body.velocity = new Vector2(Mathf.MoveTowards(body.velocity.x, horizontalSpeed, Mathf.Max(decceleration, acceleration) * Time.deltaTime * Control), body.velocity.y);
 		}
 		public void Move(float input)
 		{
