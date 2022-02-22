@@ -8,6 +8,7 @@ public class KondziuTest : MonoBehaviour
 	[SerializeField] QuoteSO testQuote;
 	[SerializeField] SizeChangable sizeChangable;
 	[SerializeField] GravityChanger gravityChanger;
+	[SerializeField] DashGhost dashGhostPrefab;
 	private void Start()
 	{
 		quoteIntro.onShowTextFinished.AddListener(() => Debug.Log("Show text finished"));
@@ -25,6 +26,6 @@ public class KondziuTest : MonoBehaviour
 		if (keyboard.kKey.wasPressedThisFrame)
 			quoteIntro.HideBackground();
 		if (keyboard.lKey.wasPressedThisFrame)
-			quoteIntro.ShowBackground();
+			quoteIntro.ShowBackground();	
 	}
 }

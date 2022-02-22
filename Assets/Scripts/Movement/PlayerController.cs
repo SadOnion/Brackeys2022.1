@@ -12,6 +12,7 @@ public class PlayerController : InputBehaviour
 	[SerializeField] Interactor interactor;
 	[SerializeField] [Range(0, 1)] float jumpCut;
 	[SerializeField] float coyoteTime = .15f;
+	[SerializeField] Dash dash;
 
 	float lastTimeOnGround;
 	float lastJumpInput;
@@ -26,6 +27,7 @@ public class PlayerController : InputBehaviour
 		controls.Player.Jump.performed += Jump;
 		controls.Player.Jump.canceled += JumpCanceled;
 		controls.Player.Interact.performed += Interact;
+		controls.Player.Dash.performed += Dash;
 	}
 
 
@@ -34,6 +36,7 @@ public class PlayerController : InputBehaviour
 		controls.Player.Jump.performed -= Jump;
 		controls.Player.Jump.canceled -= JumpCanceled;
 		controls.Player.Interact.performed -= Interact;
+		controls.Player.Dash.performed -= Dash;
 	}
 	private void JumpCanceled(InputAction.CallbackContext obj)
 	{
@@ -63,6 +66,10 @@ public class PlayerController : InputBehaviour
 	}
 	private void JumpBuffer()
 	{
-
+	}
+	private void Dash(InputAction.CallbackContext obj)
+    {
+		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
+		dash.Perform(dashDirection);
 	}
 }
