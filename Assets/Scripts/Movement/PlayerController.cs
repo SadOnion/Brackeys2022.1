@@ -42,16 +42,20 @@ public class PlayerController : InputBehaviour
 	{
 		if (body.velocity.y > 0)
 		{
-			body.velocity = new Vector2(body.velocity.x, body.velocity.y * jumpCut);
+			CutVelocityY();
 		}
 	}
-
+	private void CutVelocityY() => body.velocity = new Vector2(body.velocity.x, body.velocity.y * jumpCut);
 	private void Jump(InputAction.CallbackContext obj)
 	{
-		lastJumpInput = Time.time;
+
 		if (groundCheck.IsGrounded || CanJumpWithoutGround())
 		{
 			jumpController.PerformeJump();
+		}
+		else
+		{
+			lastJumpInput = Time.time;
 		}
 	}
 
@@ -62,13 +66,23 @@ public class PlayerController : InputBehaviour
 		if (groundCheck.IsGrounded)
 		{
 			lastTimeOnGround = Time.time;
+			JumpBuffer();
 		}
 	}
 	private void JumpBuffer()
 	{
+		if (Time.time - lastJumpInput <= coyoteTime)
+		{
+			lastJumpInput = 0;
+			jumpController.PerformeJump();
+			if (!controls.Player.Jump.IsPressed())
+			{
+				CutVelocityY();
+			}
+		}
 	}
 	private void Dash(InputAction.CallbackContext obj)
-    {
+	{
 		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
 		dash.Perform(dashDirection);
 	}
