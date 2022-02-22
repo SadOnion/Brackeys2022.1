@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1050297263140728401}
   - component: {fileID: 1050297263140728400}
   - component: {fileID: 1050297263140728399}
+  - component: {fileID: 8699235273703800271}
   - component: {fileID: 1050297263140728407}
   - component: {fileID: 1050297263140728408}
   - component: {fileID: 1050297263140728409}
@@ -204,6 +205,18 @@ MonoBehaviour:
   jumpController: {fileID: 1050297263140728400}
   groundCheck: {fileID: 1050297263140728401}
   interactor: {fileID: 1050297263140728409}
+--- !u!114 &8699235273703800271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050297263140728398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cf8f95dd0d22240a2bf47c155a6124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1050297263140728407
 MonoBehaviour:
   m_ObjectHideFlags: 0
