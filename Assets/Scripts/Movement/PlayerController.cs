@@ -11,11 +11,15 @@ public class PlayerController : InputBehaviour
 	[SerializeField] GroundCheck groundCheck;
 	[SerializeField] Interactor interactor;
 	[SerializeField] [Range(0, 1)] float jumpCut;
+	[SerializeField] float coyoteTime = .15f;
 
+	float lastTimeOnGround;
+	float lastJumpInput;
 	private void Update()
 	{
 		float input = controls.Player.Movement.ReadValue<float>();
 		accelerationMovement.Move(input);
+		UpdateLastTimeOnGround();
 	}
 	protected override void SubscribeInputEvents()
 	{
@@ -41,12 +45,24 @@ public class PlayerController : InputBehaviour
 
 	private void Jump(InputAction.CallbackContext obj)
 	{
-		if (groundCheck.IsGrounded)
+		lastJumpInput = Time.time;
+		if (groundCheck.IsGrounded || CanJumpWithoutGround())
 		{
 			jumpController.PerformeJump();
 		}
 	}
 
 	private void Interact(InputAction.CallbackContext obj) => interactor.TryInteract();
+	private bool CanJumpWithoutGround() => Time.time - lastTimeOnGround < coyoteTime;
+	private void UpdateLastTimeOnGround()
+	{
+		if (groundCheck.IsGrounded)
+		{
+			lastTimeOnGround = Time.time;
+		}
+	}
+	private void JumpBuffer()
+	{
 
+	}
 }
