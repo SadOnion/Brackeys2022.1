@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
+  deathParticlesPrefab: {fileID: 8376704541934504165, guid: 01d9f81ae3cdcef4e9710b36405f1a3f, type: 3}
   onKilled:
     m_PersistentCalls:
       m_Calls: []

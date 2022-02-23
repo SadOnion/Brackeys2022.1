@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [Tooltip("If spawn point is not specified initial player position becomes spawn point")]
     [SerializeField] Transform spawnPoint;
     Vector3 initialPlayerPos;
+    [SerializeField] ParticleSystem deathParticlesPrefab;
 
     public UnityEvent onKilled = new UnityEvent();
 
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
     public void Hit()
     {
         onKilled.Invoke();
+        ParticleSystem deathParticles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
         Respawn();
     }
 

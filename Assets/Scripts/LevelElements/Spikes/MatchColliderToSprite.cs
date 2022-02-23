@@ -17,8 +17,7 @@ public class MatchColliderToSprite : MonoBehaviour
 
     private void Update()
     {
-        Vector2 inverseScale = new Vector2(1f / spriteRenderer.transform.localScale.x, 1f / spriteRenderer.transform.localScale.y);
-        boxCollider.size = Vector2.Scale(spriteRenderer.bounds.size, inverseScale);
+        boxCollider.size = spriteRenderer.size;
         boxCollider.offset = Vector2.zero;
     }
 }
