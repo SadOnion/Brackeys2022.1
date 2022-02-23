@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 1050297263140728408}
   - component: {fileID: 1050297263140728409}
   - component: {fileID: -8787561732569422719}
+  - component: {fileID: 1898963427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -174,8 +175,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  drawGizmo: 0
-  groundBoxSizeY: 0.15
+  drawGizmo: 1
+  groundBoxSizeY: 0.1
   groundBoxSizeX: 0.95
 --- !u!114 &1050297263140728400
 MonoBehaviour:
@@ -208,8 +209,9 @@ MonoBehaviour:
   jumpController: {fileID: 1050297263140728400}
   groundCheck: {fileID: 1050297263140728401}
   interactor: {fileID: 1050297263140728409}
-  jumpCut: 0
-  dash: {fileID: 0}
+  jumpCut: 0.35
+  coyoteTime: 0.1
+  dash: {fileID: 1898963427}
 --- !u!114 &8699235273703800271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionArea: {fileID: 1050297263140728404}
---- !u!114 &-8787561732569422719
+--- !u!114 &1898963427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,10 +281,46 @@ MonoBehaviour:
   dashGhostPrefab: {fileID: 4864135781247000134, guid: 44550a024796c3f44b1e08626e0a4bcc, type: 3}
   distanceCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.0298216
+      outSlope: 3.0298216
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1737777
+      value: 0.5265154
+      inSlope: 1.3099977
+      outSlope: 1.3099977
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14979869
+    - serializedVersion: 3
+      time: 0.51150763
+      value: 0.76468086
+      inSlope: 0.45851728
+      outSlope: 0.45851728
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17718944
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.4817253
+      outSlope: 0.4817253
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   flightTime: 2
-  baseDistance: 5
-  performerVelocityImportance: 1
+  baseDistance: 6
+  performerVelocityImportance: 0.0557
