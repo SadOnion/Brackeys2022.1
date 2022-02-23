@@ -34,6 +34,13 @@ namespace Onion2D.Movement
 			return col is null ? false : true;
 		}
 
+		public bool IsGroundedWith(LayerMask layersConsideredGround)
+		{
+			var col = Physics2D.OverlapBox(Center, new Vector2(groundCheckUnderThisCollider.bounds.size.x * groundBoxSizeX, groundBoxSizeY), 0, layersConsideredGround);
+			return col is null ? false : true;
+		}
+
+
 		void OnDrawGizmos()
 		{
 			if (drawGizmo)

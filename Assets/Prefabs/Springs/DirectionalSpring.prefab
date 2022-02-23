@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 8941106908169354536}
   - component: {fileID: 8941106908169354537}
   - component: {fileID: 8941106908169354538}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DirectionalSpring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

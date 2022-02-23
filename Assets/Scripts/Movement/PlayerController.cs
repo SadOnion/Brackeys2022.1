@@ -21,6 +21,9 @@ public class PlayerController : InputBehaviour
 		float input = controls.Player.Movement.ReadValue<float>();
 		accelerationMovement.Move(input);
 		UpdateLastTimeOnGround();
+
+		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
+		dash.UpdateDashDirection(dashDirection);
 	}
 	protected override void SubscribeInputEvents()
 	{
@@ -81,9 +84,6 @@ public class PlayerController : InputBehaviour
 			}
 		}
 	}
-	private void Dash(InputAction.CallbackContext obj)
-	{
-		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
-		dash.Perform(dashDirection);
-	}
+
+	private void Dash(InputAction.CallbackContext obj) => dash.Perform();
 }

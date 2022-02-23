@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Onion2D.Movement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Dash : MonoBehaviour
 {
+    [SerializeField] LayerMask dashRefreshLayers;
+    [SerializeField] AccelerationMovement accelerationMovement;
+    [SerializeField] GroundCheck groundCheck;
     [SerializeField] DashGhost dashGhostPrefab;
     [SerializeField] AnimationCurve distanceCurve;
     [SerializeField] Player player;
@@ -16,6 +20,11 @@ public class Dash : MonoBehaviour
     new Rigidbody2D rigidbody2D;
 
     DashGhost dashGhost;
+
+    Vector2 direction = Vector2.right;
+    Vector2 sidewaysDirection = Vector2.right;
+
+    bool ready = true;
 
     private void Awake()
     {
@@ -34,15 +43,31 @@ public class Dash : MonoBehaviour
         });
     }
 
-    public void Perform(Vector2 direction)
+    private void Update()
+    {
+        if (dashGhost == null && groundCheck.IsGroundedWith(dashRefreshLayers))
+            ready = true;
+    }
+
+    public void UpdateDashDirection(Vector2 direction)
+    {
+        this.direction = direction;
+        if (direction.x != 0)
+            sidewaysDirection = new Vector2(direction.x, 0).normalized;
+    }
+
+    public void Perform()
     {
         if(dashGhost == null)
         {
-            if (direction == Vector2.zero)
+            if (!ready)
                 return;
 
+            ready = false;
+            Vector2 dashDirection = direction != Vector2.zero ? direction : sidewaysDirection;
+
             dashGhost = Instantiate(dashGhostPrefab, transform.position, Quaternion.identity)
-                .Initialize(rigidbody2D.velocity, performerVelocityImportance, baseDistance, flightTime, distanceCurve, direction);
+                .Initialize(rigidbody2D.velocity, performerVelocityImportance, baseDistance, flightTime, distanceCurve, dashDirection);
             dashGhost.onDestroyed.AddListener(() => dashGhost = null);
         }
         else
