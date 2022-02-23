@@ -78,6 +78,7 @@ public class PlayerController : InputBehaviour
 		{
 			lastJumpInput = 0;
 			jumpController.PerformeJump();
+
 			if (!controls.Player.Jump.IsPressed())
 			{
 				CutVelocityY();
