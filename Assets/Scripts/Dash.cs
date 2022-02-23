@@ -35,7 +35,7 @@ public class Dash : MonoBehaviour
         else
         {
             rigidbody2D.position = dashGhost.transform.position;
-            rigidbody2D.velocity = dashGhost.Velocity;
+            rigidbody2D.velocity = dashGhost.Velocity;  
             dashGhost.Destroy();
         }
     }  
