@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Onion2D.Movement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Player : MonoBehaviour
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] Transform spawnPoint;
     Vector3 initialPlayerPos;
     [SerializeField] ParticleSystem deathParticlesPrefab;
+    [SerializeField] GroundCheck groundCheck;
+    [SerializeField] ParticleSystem landingParticles;
 
     public UnityEvent onKilled = new UnityEvent();
 
@@ -17,10 +20,20 @@ public class Player : MonoBehaviour
 
     new Rigidbody2D rigidbody2D;
 
+    bool lastFrameGrounded = true;
+
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         initialPlayerPos = transform.position;
+    }
+
+    private void Update()
+    {
+        bool grounded = groundCheck.IsGrounded;
+        if (grounded && !lastFrameGrounded)
+            landingParticles.Play();
+        lastFrameGrounded = grounded;
     }
 
     public void Hit()
@@ -32,6 +45,7 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
+        lastFrameGrounded = true;
         Vector2 respawnPosition;
 
         if (currentCheckpoint != null)
