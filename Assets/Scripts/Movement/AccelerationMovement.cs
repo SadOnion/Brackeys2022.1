@@ -6,6 +6,7 @@ namespace Onion2D.Movement
 	{
 		[SerializeField] Rigidbody2D body;
 		[SerializeField] float acceleration, decceleration, maxSpeed;
+		public float MaxSpeed => maxSpeed;
 		float horizontalSpeed;
 		public float HorizontalSpeed => horizontalSpeed;
 

@@ -21,7 +21,7 @@ public class DashGhost : MonoBehaviour
 
     Vector2 prevPos;
 
-    public Vector2 Velocity => (rigidbody2D.position - prevPos) / Time.fixedDeltaTime;
+/*    public Vector2 Velocity => (rigidbody2D.position - prevPos) / Time.fixedDeltaTime;
 
     public DashGhost Initialize(Vector2 performerVelocity, float performerVelocityImportance, float baseDistance, float flightTime, AnimationCurve distanceCurve, Vector2 direction)
     {
@@ -36,11 +36,21 @@ public class DashGhost : MonoBehaviour
         prevPos = initialPosition;
         
         return this;
+    }*/
+
+    public DashGhost Initialize(Vector2 ghostVelocity, float flightTime)
+    {
+        rigidbody2D.velocity = ghostVelocity;
+        this.flightTime = flightTime;
+        return this;
     }
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+        rigidbody2D.gravityScale = 0;
+        rigidbody2D.drag = 0;
     }
 
     private void FixedUpdate()
@@ -48,12 +58,12 @@ public class DashGhost : MonoBehaviour
         currentTime += Time.fixedDeltaTime;
         if (currentTime > flightTime)
             Destroy(gameObject);
-        else
-        {
-            Vector2 newPosition = Vector2.Lerp(initialPosition, targetPosition, distanceCurve.Evaluate(currentTime / flightTime));
-            rigidbody2D.MovePosition(newPosition);
-            prevPos = rigidbody2D.position;
-        }
+        /*        else
+                {
+                    Vector2 newPosition = Vector2.Lerp(initialPosition, targetPosition, distanceCurve.Evaluate(currentTime / flightTime));
+                    rigidbody2D.MovePosition(newPosition);
+                    prevPos = rigidbody2D.position;
+                }*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
