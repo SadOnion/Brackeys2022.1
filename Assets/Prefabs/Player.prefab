@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 1050297263140728407}
   - component: {fileID: 1050297263140728408}
   - component: {fileID: 1050297263140728409}
-  - component: {fileID: -8787561732569422719}
   - component: {fileID: 1898963427}
   m_Layer: 0
   m_Name: Player
