@@ -58,8 +58,6 @@ public class DashGhost : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.layer + "  " + groundLayer.value);
-
         if (groundLayer == (groundLayer | (1 << collision.gameObject.layer)))
         {
             Destroy();

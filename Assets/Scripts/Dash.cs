@@ -7,6 +7,7 @@ public class Dash : MonoBehaviour
 {
     [SerializeField] DashGhost dashGhostPrefab;
     [SerializeField] AnimationCurve distanceCurve;
+    [SerializeField] Player player;
     [SerializeField] float flightTime = 2f;
     [SerializeField] float baseDistance = 5f;
     [Range(0f, 0.1f)]
@@ -19,6 +20,18 @@ public class Dash : MonoBehaviour
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        player.onKilled.AddListener(() =>
+        {
+            if(dashGhost != null)
+            {
+                dashGhost.Destroy();
+                dashGhost = null;
+            }
+        });
     }
 
     public void Perform(Vector2 direction)
@@ -37,6 +50,7 @@ public class Dash : MonoBehaviour
             rigidbody2D.position = dashGhost.transform.position;
             rigidbody2D.velocity = dashGhost.Velocity;  
             dashGhost.Destroy();
+            dashGhost = null;
         }
     }  
 }

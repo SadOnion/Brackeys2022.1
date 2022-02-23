@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
     [Tooltip("If spawn point is not specified initial player position becomes spawn point")]
     [SerializeField] Transform spawnPoint;
     Vector3 initialPlayerPos;
+
+    public UnityEvent onKilled = new UnityEvent();
+
+    Checkpoint currentCheckpoint;
 
     new Rigidbody2D rigidbody2D;
 
@@ -19,15 +24,34 @@ public class Player : MonoBehaviour
 
     public void Hit()
     {
+        onKilled.Invoke();
         Respawn();
     }
 
     public void Respawn()
     {
-        if (spawnPoint != null)
-            rigidbody2D.position = spawnPoint.position;
+        Vector2 respawnPosition;
+
+        if (currentCheckpoint != null)
+        {
+            respawnPosition = currentCheckpoint.transform.position;
+        }
         else
-            rigidbody2D.position = initialPlayerPos;
+        {
+            if (spawnPoint != null)
+                respawnPosition = spawnPoint.position;
+            else
+                respawnPosition = initialPlayerPos;
+        }
+
+        rigidbody2D.position = respawnPosition;
         rigidbody2D.velocity = Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Checkpoint checkpoint = collision.GetComponent<Checkpoint>();
+        if (checkpoint != null)
+            currentCheckpoint = checkpoint;
     }
 }
