@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
 	[Tooltip("If spawn point is not specified initial player position becomes spawn point")]
 	[SerializeField] Transform spawnPoint;
 	Vector3 initialPlayerPos;
+	[Tooltip("For how long after respawn player isn't able to control character")]
+	[SerializeField] float respawnNotMovableTime = 0.4f;
+	[SerializeField] PlayerController playerController;
 	[SerializeField] ParticleSystem deathParticlesPrefab;
 	[SerializeField] GroundCheck groundCheck;
 	[SerializeField] AccelerationMovement accelerationMovement;
@@ -74,6 +77,10 @@ public class Player : MonoBehaviour
 
 		rigidbody2D.position = respawnPosition;
 		rigidbody2D.velocity = Vector2.zero;
+		playerAnimationController.PlayRespawnAnimation();
+		accelerationMovement.ResetSpeed();
+		playerController.EnabledInputs = false;
+		LeanTween.delayedCall(respawnNotMovableTime, () => playerController.EnabledInputs = true);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -85,6 +92,6 @@ public class Player : MonoBehaviour
 
 	public void BounceAnimation()
     {
-		playerAnimationController.PlayJumpAnimation();
+		playerAnimationController.PlayBounceAnimation();
 	}
 }

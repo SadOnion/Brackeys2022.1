@@ -18,13 +18,32 @@ public class PlayerController : InputBehaviour
 	float lastJumpInput;
 	private void Update()
 	{
-		float input = controls.Player.Movement.ReadValue<float>();
-		accelerationMovement.Move(input);
-		UpdateLastTimeOnGround();
+        if (enabledInputs)
+        {
+			float input = controls.Player.Movement.ReadValue<float>();
+			accelerationMovement.Move(input);
 
-		Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
-		dash.UpdateDashDirection(dashDirection);
+			Vector2 dashDirection = controls.Player.DashDirection.ReadValue<Vector2>();
+			dash.UpdateDashDirection(dashDirection);
+		}
+
+		UpdateLastTimeOnGround();
 	}
+
+	bool enabledInputs = true;
+	public bool EnabledInputs
+    {
+		get => enabledInputs;
+        set
+        {
+			if (value == true)
+				SubscribeInputEvents();
+			else
+				UnsubscribeInputEvents();
+			enabledInputs = value;
+        }
+    }
+
 	protected override void SubscribeInputEvents()
 	{
 		controls.Player.Jump.performed += Jump;

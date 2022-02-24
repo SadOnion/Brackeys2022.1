@@ -27,6 +27,12 @@ namespace Onion2D.Movement
 				Deccelerate();
 			}
 		}
+
+		public void ResetSpeed()
+        {
+			horizontalSpeed = 0f;
+        }
+
 		private void Accelerate(float input)
 		{
 			if (Mathf.Sign(input) != Mathf.Sign(horizontalSpeed))
