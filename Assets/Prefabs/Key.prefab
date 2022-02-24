@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openedDoorsId: 0
   onKeyCollected: {fileID: 11400000, guid: 118efcface87c664e8017feafbd7cac8, type: 2}
+  keyCollectParticlesPrefab: {fileID: 9150223110568422132, guid: 71524730986aecc4ea38e6df3db92934, type: 3}
