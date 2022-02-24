@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
 	Vector3 initialPlayerPos;
 	[SerializeField] ParticleSystem deathParticlesPrefab;
 	[SerializeField] GroundCheck groundCheck;
+	[SerializeField] AccelerationMovement accelerationMovement;
 	[SerializeField] ParticleSystem landingParticles;
 	[SerializeField] PlayerAnimationController playerAnimationController;
+	[SerializeField] ParticleSystem runningParticles;
 	public UnityEvent onKilled = new UnityEvent();
 
 	Checkpoint currentCheckpoint;
@@ -38,6 +40,11 @@ public class Player : MonoBehaviour
 			landingParticles.Play();
 			lastTimeLandParticle = Time.time;
 		}
+
+		var runningParticlesMain = runningParticles.main;
+		runningParticlesMain.loop = grounded && Mathf.Abs(accelerationMovement.HorizontalSpeed) > 3f;
+		if (!runningParticles.isPlaying && runningParticlesMain.loop)
+			runningParticles.Play();
 		lastFrameGrounded = grounded;
 	}
 
