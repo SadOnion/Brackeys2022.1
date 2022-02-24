@@ -7,7 +7,7 @@ using Onion2D.Movement;
 public class Dash : MonoBehaviour
 {
     [SerializeField] LayerMask dashRefreshLayers;
-    [SerializeField] Vector2 spawnPos = Vector2.zero;
+    [SerializeField] Vector2 spawnOffset = Vector2.zero;
     [SerializeField] AccelerationMovement accelerationMovement;
     [SerializeField] GroundCheck groundCheck;
     [SerializeField] DashGhost dashGhostPrefab;
@@ -19,6 +19,8 @@ public class Dash : MonoBehaviour
     [SerializeField] float performerVelocityImportance = 1f;*/
 
     new Rigidbody2D rigidbody2D;
+
+    Vector2 SpawnPos => (Vector2)transform.position + spawnOffset * Mathf.Sign(rigidbody2D.gravityScale);
 
     DashGhost dashGhost;
 
@@ -52,8 +54,10 @@ public class Dash : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + (Vector3)spawnPos, 0.05f);
+        Gizmos.DrawSphere(SpawnPos, 0.05f);
     }
 
 
@@ -76,7 +80,7 @@ public class Dash : MonoBehaviour
             ready = false;
             Vector2 dashDirection = direction != Vector2.zero ? direction : sidewaysDirection;
 
-            dashGhost = Instantiate(dashGhostPrefab, transform.position + (Vector3)spawnPos, Quaternion.identity)
+            dashGhost = Instantiate(dashGhostPrefab, SpawnPos, Quaternion.identity)
                 //.Initialize(rigidbody2D.velocity, performerVelocityImportance, baseDistance, flightTime, distanceCurve, dashDirection);
                 .Initialize(dashDirection * accelerationMovement.MaxSpeed, flightTime);
             dashGhost.onDestroyed.AddListener(() => dashGhost = null);

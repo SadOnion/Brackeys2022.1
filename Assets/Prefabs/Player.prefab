@@ -9960,7 +9960,7 @@ MonoBehaviour:
   dashRefreshLayers:
     serializedVersion: 2
     m_Bits: 192
-  spawnPos: {x: 0, y: 0.125}
+  spawnOffset: {x: 0, y: 0.125}
   accelerationMovement: {fileID: 1050297263140728402}
   groundCheck: {fileID: 1050297263140728401}
   dashGhostPrefab: {fileID: 4864135781247000134, guid: 44550a024796c3f44b1e08626e0a4bcc, type: 3}
