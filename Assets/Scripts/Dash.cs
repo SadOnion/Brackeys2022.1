@@ -7,6 +7,7 @@ using Onion2D.Movement;
 public class Dash : MonoBehaviour
 {
     [SerializeField] LayerMask dashRefreshLayers;
+    [SerializeField] Vector2 spawnPos = Vector2.zero;
     [SerializeField] AccelerationMovement accelerationMovement;
     [SerializeField] GroundCheck groundCheck;
     [SerializeField] DashGhost dashGhostPrefab;
@@ -49,12 +50,21 @@ public class Dash : MonoBehaviour
             ready = true;
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position + (Vector3)spawnPos, 0.05f);
+    }
+
+
     public void UpdateDashDirection(Vector2 direction)
     {
         this.direction = direction;
         if (direction.x != 0)
             sidewaysDirection = new Vector2(direction.x, 0).normalized;
     }
+
+    
 
     public void Perform()
     {
@@ -66,7 +76,7 @@ public class Dash : MonoBehaviour
             ready = false;
             Vector2 dashDirection = direction != Vector2.zero ? direction : sidewaysDirection;
 
-            dashGhost = Instantiate(dashGhostPrefab, transform.position, Quaternion.identity)
+            dashGhost = Instantiate(dashGhostPrefab, transform.position + (Vector3)spawnPos, Quaternion.identity)
                 //.Initialize(rigidbody2D.velocity, performerVelocityImportance, baseDistance, flightTime, distanceCurve, dashDirection);
                 .Initialize(dashDirection * accelerationMovement.MaxSpeed, flightTime);
             dashGhost.onDestroyed.AddListener(() => dashGhost = null);

@@ -9960,6 +9960,7 @@ MonoBehaviour:
   dashRefreshLayers:
     serializedVersion: 2
     m_Bits: 192
+  spawnPos: {x: 0, y: 0.125}
   accelerationMovement: {fileID: 1050297263140728402}
   groundCheck: {fileID: 1050297263140728401}
   dashGhostPrefab: {fileID: 4864135781247000134, guid: 44550a024796c3f44b1e08626e0a4bcc, type: 3}
@@ -9991,7 +9992,7 @@ MonoBehaviour:
   - {x: 0.32833862, y: -0.48751545, z: 0}
   m_ShapePathHash: 517456021
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1500
+  m_InstanceId: -176730
 --- !u!95 &1990055355
 Animator:
   serializedVersion: 4
