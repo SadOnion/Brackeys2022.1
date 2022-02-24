@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class GravityChanger : MonoBehaviour, Interactable
 {
-	[SerializeField] VoidEvent OnGravityChange;
+	[SerializeField] GravitySystem gravitySystem;
+	[SerializeField] SpriteRenderer[] triangles;
 
 	const float cooldown = 1f;
 	float lastTimeTriggered;
@@ -15,7 +16,28 @@ public class GravityChanger : MonoBehaviour, Interactable
         lastTimeTriggered = Time.time;
 	}
 
-    public void Interact()
+    private void Start()
+    {
+		gravitySystem.onGravityChanged.AddListener(ChangeColor);
+    }
+
+    void ChangeColor(GravitySystem.Direction direction)
+    {
+		if (gravitySystem.CurrentDirection == GravitySystem.Direction.Normal)
+			foreach (var triangle in triangles)
+			{
+				triangle.color = Color.green;
+				triangle.transform.rotation = Quaternion.Euler(0, 0, 180);
+			}
+		else
+			foreach (var triangle in triangles)
+			{
+				triangle.color = Color.red;
+				triangle.transform.rotation = Quaternion.Euler(0, 0, 0);
+			}
+	}
+
+	public void Interact()
 	{
 		/*OnGravityChange.RaiseEvent();*/
 	}
@@ -24,7 +46,7 @@ public class GravityChanger : MonoBehaviour, Interactable
     {
 		if((Time.time - lastTimeTriggered) > cooldown && collision.GetComponent<Player>() != null)
         {
-			OnGravityChange.RaiseEvent();
+			gravitySystem.SwapGravity();
 			lastTimeTriggered = Time.time;
         }
 	}

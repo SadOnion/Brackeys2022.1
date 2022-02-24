@@ -4,23 +4,15 @@ using UnityEngine;
 public class DefaultGravitable : MonoBehaviour, Gravitable
 {
 	protected new Rigidbody2D rigidbody2D;
-	[SerializeField] protected VoidEvent OnGravityChange;
+	[SerializeField] protected GravitySystem gravitySystem;
 
 	protected virtual void Awake()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
+		gravitySystem.onGravityChanged.AddListener((GravitySystem.Direction dir) => SwapGravity());
 	}
 
-	protected virtual void OnEnable()
-	{
-		OnGravityChange.OnEventRaised += SwapGravity;
-	}
-	protected virtual void OnDisable()
-	{
-		OnGravityChange.OnEventRaised -= SwapGravity;
-	}
-
-	public virtual void SwapGravity()
+    public virtual void SwapGravity()
 	{
 		//To jest bardzo robocze xd
 		Vector2 offset = new Vector3(0, 0.3125f);
