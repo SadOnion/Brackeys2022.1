@@ -6,6 +6,7 @@ public class Doors : MonoBehaviour
 {
     [SerializeField] int doorsId;
     [SerializeField] IntEvent onDoorsOpened;
+    [SerializeField] Animator animator;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class Doors : MonoBehaviour
 
     void Open()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        animator.SetTrigger("Open");
     }
 }
