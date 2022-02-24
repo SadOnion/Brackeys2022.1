@@ -9908,6 +9908,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 0}
+  respawnNotMovableTime: 0.4
+  playerController: {fileID: 1050297263140728399}
   deathParticlesPrefab: {fileID: 8376704541934504165, guid: 01d9f81ae3cdcef4e9710b36405f1a3f, type: 3}
   groundCheck: {fileID: 1050297263140728401}
   accelerationMovement: {fileID: 1050297263140728402}
@@ -9989,7 +9991,7 @@ MonoBehaviour:
   - {x: 0.32833862, y: -0.48751545, z: 0}
   m_ShapePathHash: 517456021
   m_Mesh: {fileID: 0}
-  m_InstanceId: -5516
+  m_InstanceId: -1500
 --- !u!95 &1990055355
 Animator:
   serializedVersion: 4
