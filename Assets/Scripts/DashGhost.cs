@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class DashGhost : MonoBehaviour
 {
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] ParticleSystem afterimageParticles;
+    [SerializeField] ParticleSystem deathParticlesPrefab;
 
     new Rigidbody2D rigidbody2D;
 
@@ -57,7 +59,7 @@ public class DashGhost : MonoBehaviour
     {
         currentTime += Time.fixedDeltaTime;
         if (currentTime > flightTime)
-            Destroy(gameObject);
+            Destroy();
         /*        else
                 {
                     Vector2 newPosition = Vector2.Lerp(initialPosition, targetPosition, distanceCurve.Evaluate(currentTime / flightTime));
@@ -77,6 +79,16 @@ public class DashGhost : MonoBehaviour
 
     public void Destroy()
     {
+        Vector3 localScale = afterimageParticles.transform.localScale;
+        afterimageParticles.transform.parent = null;
+        afterimageParticles.transform.localScale = localScale;
+        //afterimageParticles.Stop();
+        var afterimageParticlesMain = afterimageParticles.main;
+        float particlesLifespan = afterimageParticlesMain.startLifetime.constantMax;
+        Destroy(afterimageParticles.gameObject, particlesLifespan);
+
+        Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
     }
 }
