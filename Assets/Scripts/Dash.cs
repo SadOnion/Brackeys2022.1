@@ -14,6 +14,7 @@ public class Dash : MonoBehaviour
 /*    [SerializeField] AnimationCurve distanceCurve;*/
     [SerializeField] Player player;
     [SerializeField] float flightTime = 2f;
+    [SerializeField] SpriteRenderer playerOutline;
     /*[SerializeField] float baseDistance = 5f;
     [Range(0f, 0.1f)]
     [SerializeField] float performerVelocityImportance = 1f;*/
@@ -50,6 +51,8 @@ public class Dash : MonoBehaviour
     {
         if (dashGhost == null && groundCheck.IsGroundedWith(dashRefreshLayers))
             ready = true;
+
+        playerOutline.enabled = ready;
     }
 
     private void OnDrawGizmosSelected()
