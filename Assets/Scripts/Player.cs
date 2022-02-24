@@ -82,4 +82,9 @@ public class Player : MonoBehaviour
 		if (checkpoint != null)
 			currentCheckpoint = checkpoint;
 	}
+
+	public void BounceAnimation()
+    {
+		playerAnimationController.PlayJumpAnimation();
+	}
 }
