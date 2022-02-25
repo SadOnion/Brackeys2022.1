@@ -18,8 +18,8 @@ public class PlayerController : InputBehaviour
 	float lastJumpInput;
 	private void Update()
 	{
-        if (enabledInputs)
-        {
+		if (enabledInputs)
+		{
 			float input = controls.Player.Movement.ReadValue<float>();
 			accelerationMovement.Move(input);
 
@@ -32,17 +32,17 @@ public class PlayerController : InputBehaviour
 
 	bool enabledInputs = true;
 	public bool EnabledInputs
-    {
+	{
 		get => enabledInputs;
-        set
-        {
+		set
+		{
 			if (value == true)
 				SubscribeInputEvents();
 			else
 				UnsubscribeInputEvents();
 			enabledInputs = value;
-        }
-    }
+		}
+	}
 
 	protected override void SubscribeInputEvents()
 	{
@@ -62,7 +62,7 @@ public class PlayerController : InputBehaviour
 	}
 	private void JumpCanceled(InputAction.CallbackContext obj)
 	{
-		if (body.velocity.y > 0)
+		if (Mathf.Sign(body.velocity.y) == Mathf.Sign(body.gravityScale))
 		{
 			CutVelocityY();
 		}
