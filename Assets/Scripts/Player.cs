@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 	[SerializeField] PlayerAnimationController playerAnimationController;
 	[SerializeField] ParticleSystem runningParticles;
 	public UnityEvent onKilled = new UnityEvent();
+	[SerializeField] AudioClip stepSound;
 
 	Checkpoint currentCheckpoint;
 
@@ -28,6 +29,10 @@ public class Player : MonoBehaviour
 	bool lastFrameGrounded = true;
 	float lastTimeLandParticle;
 	float landingParticleCooldown = .1f;
+
+	float timeFromLastStep = 0f;
+	float timePerStep = 0.2f;
+
 	private void Awake()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
@@ -40,6 +45,7 @@ public class Player : MonoBehaviour
 		if (grounded && !lastFrameGrounded && Time.time - lastTimeLandParticle > landingParticleCooldown)
 		{
 			playerAnimationController.PlayJumpAnimation();
+			PlayStepSound();
 			landingParticles.Play();
 			lastTimeLandParticle = Time.time;
 		}
@@ -49,6 +55,25 @@ public class Player : MonoBehaviour
 		if (!runningParticles.isPlaying && runningParticlesMain.loop)
 			runningParticles.Play();
 		lastFrameGrounded = grounded;
+
+
+        if (grounded)
+        {
+			if (accelerationMovement.HorizontalSpeed != 0)
+				timeFromLastStep += Time.deltaTime;
+
+			if (timeFromLastStep > timePerStep)
+			{
+				timeFromLastStep = 0f;
+				PlayStepSound();
+			}
+		}
+	}
+
+	void PlayStepSound()
+    {
+		AudioSource audioSource = LeanAudio.play(stepSound);
+		audioSource.pitch = Random.Range(1f, 1.5f);
 	}
 
 	public void Hit()

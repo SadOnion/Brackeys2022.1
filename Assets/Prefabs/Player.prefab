@@ -9934,6 +9934,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  stepSound: {fileID: 8300000, guid: 7976eb3ac89301d4b8f37ff3a1b1922b, type: 3}
 --- !u!114 &1050297263140728408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10009,7 +10010,7 @@ MonoBehaviour:
   - {x: 0.32833862, y: -0.48751545, z: 0}
   m_ShapePathHash: 517456021
   m_Mesh: {fileID: 0}
-  m_InstanceId: -148156
+  m_InstanceId: 390192
 --- !u!95 &1990055355
 Animator:
   serializedVersion: 4
