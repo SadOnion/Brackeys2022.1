@@ -83,14 +83,14 @@ public class Player : MonoBehaviour
 		LeanTween.delayedCall(respawnNotMovableTime, () => playerController.EnabledInputs = true);
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
+    private void OnTriggerStay2D(Collider2D collision)
+    {
 		Checkpoint checkpoint = collision.GetComponent<Checkpoint>();
 		if (checkpoint != null)
 			currentCheckpoint = checkpoint;
 	}
 
-	public void BounceAnimation()
+    public void BounceAnimation()
     {
 		playerAnimationController.PlayBounceAnimation();
 	}
