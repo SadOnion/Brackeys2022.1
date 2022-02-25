@@ -8,7 +8,7 @@ public class GravityChanger : MonoBehaviour, Interactable
 	[SerializeField] GravitySystem gravitySystem;
 	[SerializeField] SpriteRenderer[] triangles;
 
-	const float cooldown = 1f;
+	const float cooldown = 0.5f;
 	float lastTimeTriggered;
 
     private void Awake()

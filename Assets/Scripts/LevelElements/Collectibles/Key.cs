@@ -8,12 +8,7 @@ public class Key : DefaultCollectible
     [SerializeField] IntEvent onKeyCollected;
     [SerializeField] ParticleSystem keyCollectParticlesPrefab;
     
-    SpriteRenderer spriteRenderer;
-
-    private void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     public override void Collect()
     {
