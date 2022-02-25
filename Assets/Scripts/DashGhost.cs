@@ -73,7 +73,6 @@ public class DashGhost : MonoBehaviour
         if (groundLayer == (groundLayer | (1 << collision.gameObject.layer)))
         {
             Destroy();
-            onDestroyed.Invoke();
         }
     }
 
@@ -90,5 +89,6 @@ public class DashGhost : MonoBehaviour
         Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
+        onDestroyed.Invoke();
     }
 }

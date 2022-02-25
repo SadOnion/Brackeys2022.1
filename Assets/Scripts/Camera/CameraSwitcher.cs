@@ -3,15 +3,22 @@ using UnityEngine;
 public class CameraSwitcher : MonoBehaviour
 {
 	[SerializeField] CinemachineVirtualCamera activeCamera;
-	[SerializeField] CinemachineVirtualCameraEvent OnCameraSwitch;
+	[SerializeField] CinemachineVirtualCameraSwitchSystem OnCameraSwitch;
 
-	private void OnEnable()
+	public static CameraSwitcher instance;
+
+    private void Awake()
+    {
+		instance = this;
+    }
+
+    private void OnEnable()
 	{
-		OnCameraSwitch.OnEventRaised += SwitchCamera;
+		OnCameraSwitch.onCameraChanged += SwitchCamera;
 	}
 	private void OnDisable()
 	{
-		OnCameraSwitch.OnEventRaised -= SwitchCamera;
+		OnCameraSwitch.onCameraChanged -= SwitchCamera;
 	}
 	private void SwitchCamera(CinemachineVirtualCamera obj)
 	{

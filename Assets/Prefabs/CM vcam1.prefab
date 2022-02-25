@@ -63,7 +63,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7804878, y: 1}
+    m_SensorSize: {x: 1.7769231, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -238,5 +238,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6e2850969fcdcd42bdbfdec7ca668f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnCameraSwitch: {fileID: 11400000, guid: 8a8332e5999bf4f45a52a1098063ee9e, type: 2}
+  cameraSwitchSystem: {fileID: 11400000, guid: 8a8332e5999bf4f45a52a1098063ee9e, type: 2}
   vCamera: {fileID: 3205207444034503736}
