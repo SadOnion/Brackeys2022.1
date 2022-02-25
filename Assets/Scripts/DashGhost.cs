@@ -66,28 +66,29 @@ public class DashGhost : MonoBehaviour
                     rigidbody2D.MovePosition(newPosition);
                     prevPos = rigidbody2D.position;
                 }*/
-	}
+    }
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (groundLayer == (groundLayer | (1 << collision.gameObject.layer)))
-		{
-			Destroy();
-		}
-	}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (groundLayer == (groundLayer | (1 << collision.gameObject.layer)))
+        {
+            Destroy();
+        }
+    }
 
-	public void Destroy()
-	{
-		Vector3 localScale = afterimageParticles.transform.localScale;
-		afterimageParticles.transform.parent = null;
-		afterimageParticles.transform.localScale = localScale;
-		//afterimageParticles.Stop();
-		var afterimageParticlesMain = afterimageParticles.main;
-		float particlesLifespan = afterimageParticlesMain.startLifetime.constantMax;
-		onDestroyed.Invoke();
-		Destroy(afterimageParticles.gameObject, particlesLifespan);
-		Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+    public void Destroy()
+    {
+        Vector3 localScale = afterimageParticles.transform.localScale;
+        afterimageParticles.transform.parent = null;
+        afterimageParticles.transform.localScale = localScale;
+        //afterimageParticles.Stop();
+        var afterimageParticlesMain = afterimageParticles.main;
+        float particlesLifespan = afterimageParticlesMain.startLifetime.constantMax;
+        onDestroyed.Invoke();
+        Destroy(afterimageParticles.gameObject, particlesLifespan);
 
-		Destroy(gameObject);
-	}
+        Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+    }
 }
