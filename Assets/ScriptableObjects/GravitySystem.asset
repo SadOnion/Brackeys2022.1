@@ -15,3 +15,6 @@ MonoBehaviour:
   onGravityChanged:
     m_PersistentCalls:
       m_Calls: []
+  normalGravity: {fileID: 8300000, guid: 74cb863c44a12ee42ab6a92fd2df43e9, type: 3}
+  reverseGravity: {fileID: 8300000, guid: abede2ccfce524041ab571b432ae21c6, type: 3}
+  volume: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}

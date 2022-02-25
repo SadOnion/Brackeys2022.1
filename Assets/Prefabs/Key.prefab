@@ -49,6 +49,8 @@ MonoBehaviour:
   openedDoorsId: 0
   onKeyCollected: {fileID: 11400000, guid: 118efcface87c664e8017feafbd7cac8, type: 2}
   keyCollectParticlesPrefab: {fileID: 9150223110568422132, guid: 71524730986aecc4ea38e6df3db92934, type: 3}
+  bounce: {fileID: 8300000, guid: 2935fb205b82d834980cc9046d153cec, type: 3}
+  volume: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}
   spriteRenderer: {fileID: 3876497502033358265}
 --- !u!58 &5076708454233804591
 CircleCollider2D:
