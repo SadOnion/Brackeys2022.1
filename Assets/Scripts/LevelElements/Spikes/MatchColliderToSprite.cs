@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
 public class MatchColliderToSprite : MonoBehaviour
 {
+    [SerializeField] float yPadding = 0f;
     BoxCollider2D boxCollider;
     SpriteRenderer spriteRenderer;
 
@@ -17,7 +18,7 @@ public class MatchColliderToSprite : MonoBehaviour
 
     private void Update()
     {
-        boxCollider.size = spriteRenderer.size;
+        boxCollider.size = spriteRenderer.size - new Vector2(0, yPadding);
         boxCollider.offset = Vector2.zero;
     }
 }
