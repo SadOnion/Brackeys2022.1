@@ -1,4 +1,4 @@
 public interface Gravitable
 {
-	public void SwapGravity();
+	public void SwapGravity(GravitySystem.Direction dir);
 }

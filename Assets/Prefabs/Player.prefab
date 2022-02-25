@@ -9932,6 +9932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitySystem: {fileID: 11400000, guid: 9e52319d87931124db869bd6b17d61fc, type: 2}
+  player: {fileID: 8699235273703800271}
 --- !u!114 &1050297263140728409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9993,7 +9994,7 @@ MonoBehaviour:
   - {x: 0.32833862, y: -0.48751545, z: 0}
   m_ShapePathHash: 517456021
   m_Mesh: {fileID: 0}
-  m_InstanceId: 39106
+  m_InstanceId: 242612
 --- !u!95 &1990055355
 Animator:
   serializedVersion: 4

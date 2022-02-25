@@ -18,6 +18,12 @@ public class GravitySystem : ScriptableObject
         onGravityChanged = new UnityEvent<Direction>();
     }
 
+    public void SwapGravity(Direction direction)
+    {
+        CurrentDirection = direction;
+        onGravityChanged.Invoke(CurrentDirection);
+    }
+
     public void SwapGravity()
     {
         if (CurrentDirection == Direction.Normal)

@@ -53,9 +53,9 @@ public class Player : MonoBehaviour
 
 	public void Hit()
 	{
-		onKilled.Invoke();
 		ParticleSystem deathParticles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
 		Respawn();
+		onKilled.Invoke();
 	}
 
 	public void Respawn()

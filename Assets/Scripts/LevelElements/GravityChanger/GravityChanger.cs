@@ -6,7 +6,8 @@ using UnityEngine;
 public class GravityChanger : MonoBehaviour, Interactable
 {
 	[SerializeField] GravitySystem gravitySystem;
-	[SerializeField] SpriteRenderer[] triangles;
+	[SerializeField] SpriteRenderer[] greenTriangles;
+	[SerializeField] SpriteRenderer[] redTriangles;
 
 	const float cooldown = 0.5f;
 	float lastTimeTriggered;
@@ -18,23 +19,26 @@ public class GravityChanger : MonoBehaviour, Interactable
 
     private void Start()
     {
+		ChangeColor(gravitySystem.CurrentDirection);
 		gravitySystem.onGravityChanged.AddListener(ChangeColor);
     }
 
     void ChangeColor(GravitySystem.Direction direction)
     {
 		if (gravitySystem.CurrentDirection == GravitySystem.Direction.Normal)
-			foreach (var triangle in triangles)
-			{
+		{
+			foreach (var triangle in greenTriangles)
 				triangle.color = Color.green;
-				triangle.transform.rotation = Quaternion.Euler(0, 0, 180);
-			}
+			foreach (var triangle in redTriangles)
+				triangle.color = Color.gray;
+		}
 		else
-			foreach (var triangle in triangles)
-			{
+		{
+			foreach (var triangle in greenTriangles)
+				triangle.color = Color.gray;
+			foreach (var triangle in redTriangles)
 				triangle.color = Color.red;
-				triangle.transform.rotation = Quaternion.Euler(0, 0, 0);
-			}
+		}
 	}
 
 	public void Interact()
