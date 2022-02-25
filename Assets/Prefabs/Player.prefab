@@ -9753,6 +9753,7 @@ GameObject:
   - component: {fileID: 4314092419938082441}
   - component: {fileID: 1990055355}
   - component: {fileID: 1990055354}
+  - component: {fileID: 962856958}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -9875,6 +9876,8 @@ MonoBehaviour:
   body: {fileID: 1050297263140728403}
   jumpForce: 15
   playerAnimationController: {fileID: 1990055354}
+  jump: {fileID: 8300000, guid: a1dd2fae313ccff4f90f33bb6494df43, type: 3}
+  volume: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}
 --- !u!114 &1050297263140728399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9918,7 +9921,19 @@ MonoBehaviour:
   runningParticles: {fileID: 278728672}
   onKilled:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 962856958}
+        m_TargetAssemblyTypeName: PlayAudio, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1050297263140728408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9994,7 +10009,7 @@ MonoBehaviour:
   - {x: 0.32833862, y: -0.48751545, z: 0}
   m_ShapePathHash: 517456021
   m_Mesh: {fileID: 0}
-  m_InstanceId: 242612
+  m_InstanceId: -148156
 --- !u!95 &1990055355
 Animator:
   serializedVersion: 4
@@ -10028,6 +10043,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1990055355}
+--- !u!114 &962856958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050297263140728398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afdc172cfbd1f643baad7550ce5f77c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 17c0ad3975c197041b733a9d26b16c60, type: 3}
+  volume: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}
 --- !u!1 &1826384316222421637
 GameObject:
   m_ObjectHideFlags: 0

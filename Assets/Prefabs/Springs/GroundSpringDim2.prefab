@@ -19,6 +19,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3365007008432626310, guid: 23aa18e199b5d664f8bd02695642aa7b, type: 3}
+      propertyPath: bounce
+      value: 
+      objectReference: {fileID: 8300000, guid: a22dd8e3b7755324ba5e08e7e33242a1, type: 3}
+    - target: {fileID: 3365007008432626310, guid: 23aa18e199b5d664f8bd02695642aa7b, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}
     - target: {fileID: 4675428547651580184, guid: 23aa18e199b5d664f8bd02695642aa7b, type: 3}
       propertyPath: m_Name
       value: GroundSpringDim2

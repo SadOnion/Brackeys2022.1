@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5479091089278750474}
+  bounce: {fileID: 8300000, guid: a22dd8e3b7755324ba5e08e7e33242a1, type: 3}
+  volume: {fileID: 11400000, guid: a37f4c7bd53a7bc4d9e5095166cdbb22, type: 2}
   powerMultiplier: 0
   baseForce: 20
 --- !u!95 &5479091089278750474
