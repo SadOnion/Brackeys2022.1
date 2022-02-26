@@ -14,8 +14,8 @@ public class PlayerController : InputBehaviour
 	[SerializeField] float coyoteTime = .15f;
 	[SerializeField] Dash dash;
 
-	float lastTimeOnGround;
-	float lastJumpInput;
+	float lastTimeOnGround = -1;
+	float lastJumpInput = -1;
 	private void Update()
 	{
 		if (enabledInputs)
