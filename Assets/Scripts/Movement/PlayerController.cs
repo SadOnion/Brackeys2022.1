@@ -41,6 +41,7 @@ public class PlayerController : InputBehaviour
 			else
 				UnsubscribeInputEvents();
 			enabledInputs = value;
+			accelerationMovement.enabled = enabledInputs;
 		}
 	}
 

@@ -15,8 +15,6 @@ public class KondziuTest : MonoBehaviour
 		quoteIntro.onShowTextFinished.AddListener(() => Debug.Log("Show text finished"));
 		quoteIntro.onHideBackgroundFinished.AddListener(() => Debug.Log("Hide background finished"));
 		quoteIntro.onShowBackgroundFinished.AddListener(() => Debug.Log("Show background finished"));
-
-		LeanTween.delayedCall(2f, onSceneFinished.RaiseEvent);
 	}
 	void Update()
 	{

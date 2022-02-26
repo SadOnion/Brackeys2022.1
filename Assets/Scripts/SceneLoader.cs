@@ -31,6 +31,7 @@ public class SceneLoader : MonoBehaviour
         currentScene++;
         if(currentScene < scenes.Length)
         {
+            LeanTween.cancelAll();
             SceneManager.LoadScene(scenes[currentScene].sceneName, LoadSceneMode.Additive);
             if (previousScene >= 0)
                 SceneManager.UnloadSceneAsync(scenes[previousScene].sceneName);

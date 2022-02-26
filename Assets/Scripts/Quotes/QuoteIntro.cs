@@ -9,6 +9,7 @@ public class QuoteIntro : MonoBehaviour
 {
     [Header("Main")]
     [SerializeField] QuoteSO quote;
+    [SerializeField] bool startWithBackground;
 
     [Header("Dependencies")]
     [SerializeField] CanvasGroup canvasGroup;
@@ -29,6 +30,14 @@ public class QuoteIntro : MonoBehaviour
     {
         textField.text = quote.Text;
         textField.alpha = 0f;
+
+        if (startWithBackground)
+        {
+            canvasGroup.alpha = 1f;
+            HideBackground();
+        }
+        else
+            canvasGroup.alpha = 0f;
     }
 
     private void OnValidate()
