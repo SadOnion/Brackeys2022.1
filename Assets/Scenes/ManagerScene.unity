@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenes:
-  - sceneName: Assets/Scenes/KondziuTestScene.unity
   - sceneName: Assets/Scenes/HomeDimension.unity
   - sceneName: Assets/Scenes/CebulaTestScene.unity
   - sceneName: Assets/Scenes/Levels/Dimension2.unity
+  - sceneName: Assets/Scenes/HomeDimension.unity
   onSceneFinished: {fileID: 11400000, guid: 4811213e58c72ef4d873aab232b39316, type: 2}
