@@ -31,9 +31,28 @@ public class SceneLoader : MonoBehaviour
 		currentScene++;
 		if (currentScene < scenes.Length)
 		{
-			SceneManager.LoadScene(scenes[currentScene].sceneName, LoadSceneMode.Additive);
 			if (previousScene >= 0)
-				SceneManager.UnloadSceneAsync(scenes[previousScene].sceneName);
+            {
+				StartCoroutine(UnloadScene(previousScene));
+			}
+			else
+				SceneManager.LoadScene(scenes[currentScene].sceneName, LoadSceneMode.Additive);
+
 		}
+	}
+
+	IEnumerator UnloadScene(int scene)
+    {
+		AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(scenes[scene].sceneName);
+        while (!unloadOperation.isDone)
+        {
+			yield return null;
+        }
+		SceneManager.LoadScene(scenes[currentScene].sceneName, LoadSceneMode.Additive);
+	}
+
+    private void UnloadOperation_completed(AsyncOperation obj)
+    {
+		SceneManager.LoadScene(scenes[currentScene].sceneName, LoadSceneMode.Additive);
 	}
 }

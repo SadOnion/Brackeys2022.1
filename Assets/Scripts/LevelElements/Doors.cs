@@ -12,7 +12,12 @@ public class Doors : MonoBehaviour
     private void Awake()
     {
         onDoorsOpened.OnEventRaised += OpenIfIdMatches;
-    } 
+    }
+
+    private void OnDestroy()
+    {
+        onDoorsOpened.OnEventRaised -= OpenIfIdMatches;
+    }
 
     void OpenIfIdMatches(int doorsId)
     {

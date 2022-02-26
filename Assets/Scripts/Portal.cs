@@ -41,7 +41,17 @@ public class Portal : MonoBehaviour
             player.transform.LeanMove(transform.position, time).setEase(positionEaseType);
 
             quoteIntro.ShowBackground();
-            quoteIntro.onShowBackgroundFinished.AddListener(onSceneFinished.RaiseEvent);
+
+            quoteIntro.onShowBackgroundFinished.AddListener(OnSceneFinished);
+
+
         }
+    }
+
+    void OnSceneFinished()
+    {
+        LeanTween.cancelAll();
+        onSceneFinished.RaiseEvent();
+        quoteIntro.onHideBackgroundFinished.RemoveListener(OnSceneFinished);
     }
 }
