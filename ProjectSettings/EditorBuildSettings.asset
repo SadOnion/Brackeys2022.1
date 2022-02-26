@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Dimension2.unity
     guid: 784b30d21ff66c44fa5388678c8ea7f2
+  - enabled: 1
+    path: Assets/Scenes/HomeAgain.unity
+    guid: 75589ca3baafd9c40aee74572b096422
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 2662b6bfea5b613439ce821e1e97929f, type: 2}
